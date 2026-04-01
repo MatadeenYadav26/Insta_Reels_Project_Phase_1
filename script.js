@@ -110,11 +110,14 @@ const reels = [
     isFollowed: false
   }
 ];
+var allReels = document.querySelector('.all-reels')
 
-var sum = ''
+function addData(){
+  var sum = ''
 
-reels.forEach(function(elem){
+reels.forEach(function(elem,idx){
     // console.log(elem);
+    // console.log(idx);
     sum =sum + `<div class="reel">
                                 <video autoplay loop muted src="${elem.video}"></video>
                     <div class="bottom">
@@ -127,7 +130,7 @@ reels.forEach(function(elem){
                         </h3>
                     </div>
                     <div class="right">
-                       <div class="like">
+                       <div id=${idx} class="like">
                         <h4 class="like-icon icon">${elem.isLiked?'<i class=" love ri-heart-3-fill"></i>':'<i class="ri-heart-3-line"></i>'}</h4>
                         <h6>${elem.likes}</h6>
                        </div>
@@ -146,6 +149,30 @@ reels.forEach(function(elem){
                 </div>`
 })
 
-var allReels = document.querySelector('.all-reels')
-
 allReels.innerHTML = sum
+}
+
+addData()
+
+//event modeling:
+
+allReels.addEventListener('click', function(dets){
+  // console.log("Hello"); // aap kahi v click karoge hello milega on screen.
+  // console.log(dets);
+  // console.log(dets.target);// it gives value of targeting elemnt : eg:- like , share , video , comments , caption , etc
+  // console.log(dets.target.id); // arrays ki indexes jesi hai ye id's : 
+  // console.log(reels[dets.target.id]); // id pe click krne pe pura ka pura object milega 
+  // console.log(reels[dets.target.id].caption); // like pe click krne pe pura ka pura object milega for caption
+  // console.log(reels[dets.target.id].likeCount); // likes ka count milega if id attached hot , jo mere code me abhi nahi h.
+  console.log(reels[dets.target.id]); // This is a golden number , you can find every data w help of this.
+  
+  
+  
+})
+
+// var arr = [10,20,30,40]
+
+// arr.forEach(function(elem,idx){ // first variable will print element , 2nd variable will print index numbers
+//   console.log(elem); // gives value of element in array
+//   console.log(idx); //gives index number   
+// })
